@@ -1,0 +1,37 @@
+openapi: 3.0.0
+info:
+  description: An example contract
+  title: An example contract
+  version: '1.0'
+servers:
+  - url: "http://localhost:9080"
+    description: "local"
+paths:
+  /resource:
+    get:
+      operationId: getResource
+      description: Return some resource
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetResourceResponse'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    GetResourceResponse:
+      type: object
+      required:
+        - text
+      properties:
+        text:
+          type: string
+        
